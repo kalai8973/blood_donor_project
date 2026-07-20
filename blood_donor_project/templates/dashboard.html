@@ -1,0 +1,367 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+
+<h2 class="text-center mb-4">
+    🩸 Blood Donor Dashboard
+</h2>
+
+<!-- Statistics Cards -->
+
+<div class="row g-4">
+
+    <div class="col-lg-3 col-md-6 col-sm-12">
+
+        <div class="card bg-primary text-white shadow">
+
+            <div class="card-body text-center">
+
+                <h5>Total Donors</h5>
+
+                <h1>{{ total_donors }}</h1>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-3 col-md-6 col-sm-12">
+
+        <div class="card bg-danger text-white shadow">
+
+            <div class="card-body text-center">
+
+                <h5>Blood Requests</h5>
+
+                <h1>{{ total_requests }}</h1>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-3 col-md-6 col-sm-12">
+
+        <div class="card bg-success text-white shadow">
+
+            <div class="card-body text-center">
+
+                <h5>Available</h5>
+
+                <h1>{{ available }}</h1>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-3 col-md-6 col-sm-12">
+
+        <div class="card bg-secondary text-white shadow">
+
+            <div class="card-body text-center">
+
+                <h5>Unavailable</h5>
+
+                <h1>{{ unavailable }}</h1>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Welcome -->
+
+<div class="card shadow mt-4">
+
+    <div class="card-header bg-dark text-white">
+
+        <h4>Welcome</h4>
+
+    </div>
+
+    <div class="card-body">
+
+        <p class="lead">
+
+            Welcome to the <strong>Blood Donor Finder System</strong>.
+
+        </p>
+
+        <p>
+
+            Manage donors, search donors, register blood requests,
+            export reports and monitor dashboard statistics.
+
+        </p>
+
+    </div>
+
+</div>
+
+<!-- Quick Actions -->
+
+<div class="row mt-4">
+
+    <div class="col-md-3 mb-3">
+
+        <a href="/register/" class="btn btn-danger w-100">
+            ➕ Register Donor
+        </a>
+
+    </div>
+
+    <div class="col-md-3 mb-3">
+
+        <a href="/search/" class="btn btn-primary w-100">
+            🔍 Search Donor
+        </a>
+
+    </div>
+
+    <div class="col-md-3 mb-3">
+
+        <a href="/export-pdf/" class="btn btn-success w-100">
+            📄 Export PDF
+        </a>
+
+    </div>
+
+    <div class="col-md-3 mb-3">
+
+        <a href="/export-excel/" class="btn btn-warning w-100">
+            📊 Export Excel
+        </a>
+
+    </div>
+
+</div>
+
+<!-- Recent Donors -->
+
+<div class="card shadow mt-4">
+
+    <div class="card-header bg-primary text-white">
+
+        <h4>Recent Donors</h4>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-hover">
+
+                <thead class="table-danger">
+
+                    <tr>
+
+                        <th>Name</th>
+                        <th>Mobile</th>
+                        <th>City</th>
+                        <th>Blood Group</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for donor in recent_donors %}
+
+                    <tr>
+
+                        <td>{{ donor.name }}</td>
+                        <td>{{ donor.mobile }}</td>
+                        <td>{{ donor.city }}</td>
+
+                        <td>
+
+                            <span class="badge bg-danger">
+
+                                {{ donor.blood_group }}
+
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                {% empty %}
+
+                    <tr>
+
+                        <td colspan="4" class="text-center">
+
+                            No Donors Available
+
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Charts -->
+
+<h3 class="text-center mt-5 mb-4">
+
+    📊 Dashboard Analytics
+
+</h3>
+
+<div class="row">
+
+    <div class="col-lg-6 mb-4">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-danger text-white">
+
+                Blood Group Distribution
+
+            </div>
+
+            <div class="card-body">
+
+                <canvas id="bloodChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-6 mb-4">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-success text-white">
+
+                Donor Availability
+
+            </div>
+
+            <div class="card-body">
+
+                <canvas id="statusChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+const labels = [
+{% for label in labels %}
+"{{ label }}",
+{% endfor %}
+];
+
+const values = [
+{% for value in values %}
+{{ value }},
+{% endfor %}
+];
+
+new Chart(document.getElementById('bloodChart'), {
+
+    type: 'pie',
+
+    data: {
+
+        labels: labels,
+
+        datasets: [{
+
+            data: values,
+
+            backgroundColor: [
+
+                '#dc3545',
+                '#0d6efd',
+                '#198754',
+                '#ffc107',
+                '#6f42c1',
+                '#fd7e14',
+                '#20c997',
+                '#6c757d'
+
+            ]
+
+        }]
+
+    }
+
+});
+
+new Chart(document.getElementById('statusChart'), {
+
+    type: 'bar',
+
+    data: {
+
+        labels: ['Available', 'Unavailable'],
+
+        datasets: [{
+
+            data: [{{ available }}, {{ unavailable }}],
+
+            backgroundColor: [
+
+                '#198754',
+                '#dc3545'
+
+            ]
+
+        }]
+
+    },
+
+    options: {
+
+        responsive: true,
+
+        scales: {
+
+            y: {
+
+                beginAtZero: true
+
+            }
+
+        }
+
+    }
+
+});
+
+</script>
+
+{% endblock %}

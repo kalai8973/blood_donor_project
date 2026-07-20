@@ -1,0 +1,259 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Blood Donor Finder
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+
+<div class="p-5 mb-5 text-center bg-danger text-white rounded shadow">
+
+    <h1 class="display-4 fw-bold">
+        🩸 Blood Donor Finder
+    </h1>
+
+    <p class="lead mt-3">
+        Save Lives. Donate Blood. Become a Hero.
+    </p>
+
+    <a href="/register/" class="btn btn-light btn-lg me-3">
+        Register as Donor
+    </a>
+
+    <a href="/search/" class="btn btn-dark btn-lg">
+        Search Donor
+    </a>
+
+</div>
+
+<!-- Statistics -->
+
+<div class="row text-center">
+
+    <div class="col-md-3 mb-3">
+
+        <div class="card shadow border-0">
+
+            <div class="card-body">
+
+                <h5>Total Donors</h5>
+
+                <h2 class="text-danger">
+                    {{ total_donors }}
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3 mb-3">
+
+        <div class="card shadow border-0">
+
+            <div class="card-body">
+
+                <h5>Blood Requests</h5>
+
+                <h2 class="text-primary">
+                    {{ total_requests }}
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3 mb-3">
+
+        <div class="card shadow border-0">
+
+            <div class="card-body">
+
+                <h5>Available Donors</h5>
+
+                <h2 class="text-success">
+                    {{ available }}
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3 mb-3">
+
+        <div class="card shadow border-0">
+
+            <div class="card-body">
+
+                <h5>Cities Covered</h5>
+
+                <h2 class="text-warning">
+                    {{ cities }}
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<hr class="my-5">
+
+<!-- Features -->
+
+<h2 class="text-center mb-4">
+    Why Choose Us?
+</h2>
+
+<div class="row">
+
+    <div class="col-md-3 mb-4">
+
+        <div class="card shadow h-100">
+
+            <div class="card-body text-center">
+
+                <h1>❤️</h1>
+
+                <h4>Save Lives</h4>
+
+                <p>
+                    Every donation can save multiple lives.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3 mb-4">
+
+        <div class="card shadow h-100">
+
+            <div class="card-body text-center">
+
+                <h1>🔍</h1>
+
+                <h4>Quick Search</h4>
+
+                <p>
+                    Search donors instantly by city and blood group.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3 mb-4">
+
+        <div class="card shadow h-100">
+
+            <div class="card-body text-center">
+
+                <h1>🔒</h1>
+
+                <h4>Secure Data</h4>
+
+                <p>
+                    Donor information is safely managed.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3 mb-4">
+
+        <div class="card shadow h-100">
+
+            <div class="card-body text-center">
+
+                <h1>⚡</h1>
+
+                <h4>Emergency Support</h4>
+
+                <p>
+                    Quickly request blood during emergencies.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<hr class="my-5">
+
+<!-- Blood Compatibility -->
+
+<h2 class="text-center mb-4">
+    Blood Compatibility
+</h2>
+
+<div class="table-responsive">
+
+<table class="table table-bordered table-hover text-center">
+
+<thead class="table-danger">
+
+<tr>
+
+<th>Blood Group</th>
+
+<th>Can Donate To</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr><td>O-</td><td>All Blood Groups</td></tr>
+<tr><td>O+</td><td>O+, A+, B+, AB+</td></tr>
+<tr><td>A+</td><td>A+, AB+</td></tr>
+<tr><td>B+</td><td>B+, AB+</td></tr>
+<tr><td>AB+</td><td>AB+</td></tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<hr class="my-5">
+
+<!-- Emergency -->
+
+<div class="bg-dark text-white rounded p-5 text-center shadow">
+
+<h2>
+Emergency Blood Needed?
+</h2>
+
+<p class="lead">
+Request blood immediately through our Blood Request Portal.
+</p>
+
+<a href="/request-blood/" class="btn btn-danger btn-lg">
+Request Blood
+</a>
+
+</div>
+
+{% endblock %}

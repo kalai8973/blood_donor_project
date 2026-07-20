@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Contact Us
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="text-center mb-5">
+        <h1 class="text-danger fw-bold">Contact Us</h1>
+        <p class="lead">
+            We'd love to hear from you.
+        </p>
+    </div>
+
+    <div class="row">
+
+        <!-- Contact Information -->
+
+        <div class="col-lg-5 mb-4">
+
+            <div class="card shadow h-100">
+
+                <div class="card-body">
+
+                    <h3 class="text-danger">Contact Information</h3>
+
+                    <hr>
+
+                    <p>
+                        <strong>📍 Address:</strong><br>
+                        chennai, Tamil Nadu, India
+                    </p>
+
+                    <p>
+                        <strong>📞 Phone:</strong><br>
+                        +91 98765 43210
+                    </p>
+
+                    <p>
+                        <strong>📧 Email:</strong><br>
+                        blooddonor@gmail.com
+                    </p>
+
+                    <p>
+                        <strong>🕒 Working Hours:</strong><br>
+                        Monday - Sunday<br>
+                        24 × 7 Emergency Service
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Contact Form -->
+
+        <div class="col-lg-7">
+
+            <div class="card shadow">
+
+                <div class="card-body">
+
+                    <h3 class="text-danger mb-4">
+                        Send a Message
+                    </h3>
+
+                    <form>
+
+                        <div class="mb-3">
+                            <label>Name</label>
+                            <input type="text"
+                                   class="form-control"
+                                   placeholder="Enter your name">
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Email</label>
+                            <input type="email"
+                                   class="form-control"
+                                   placeholder="Enter your email">
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Subject</label>
+                            <input type="text"
+                                   class="form-control"
+                                   placeholder="Subject">
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Message</label>
+                            <textarea class="form-control"
+                                      rows="5"
+                                      placeholder="Write your message"></textarea>
+                        </div>
+
+                        <button class="btn btn-danger w-100">
+                            Send Message
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
